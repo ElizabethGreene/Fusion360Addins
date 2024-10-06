@@ -48,6 +48,11 @@ def run(context):
         f3dExportOptions = exportMgr.createFusionArchiveExportOptions(fileDlg.filename)
         exportMgr.execute(f3dExportOptions)
 
+        # Export the .Step file to the same directory
+        stepFileName = os.path.join(outputDirectory, os.path.splitext(os.path.basename(fileDlg.filename))[0] + '.step')
+        stepExportOptions = exportMgr.createSTEPExportOptions(stepFileName)
+        exportMgr.execute(stepExportOptions)    
+
         # Now iterate through the components and export each body as an STL and 3Mf file        
 
         # get the root component of the active design
@@ -145,7 +150,6 @@ def MakeFilenameUnique(bodyName, bodyNames):
 # This function takes a filename and removes any special characters that are not allowed in filenames.
 # e.g. / \ : * ? " < > |
 # It also removes leading spaces and trailing spaces.
-# catches "special" filenames like CON, PRN, AUX, NUL, COMn, LPTn, where n is a number, and appends an underscore to the end of the filename
 # and if a filename is blank or invalid, it returns "BadBodyName"
 def RemoveSpecialCharactersFromFilename(filename):
     # Remove leading and trailing spaces
@@ -156,13 +160,6 @@ def RemoveSpecialCharactersFromFilename(filename):
     # If filename contains specialCharacters, remove them.
     for character in specialCharacters:
         newfilename = newfilename.replace(character, '')
-
-    # List of reserved filenames in Windows
-    reservedFilenames = ['CON','PRN', 'AUX', 'NUL', 'COM1', 'LPT1', 'COM2', 'LPT2', 'COM3', 'LPT3', 'COM4', 'LPT4', 'COM5', 'LPT5', 'COM6', 'LPT6', 'COM7', 'LPT7', 'COM8', 'LPT8', 'COM9', 'LPT9']
-    
-    for reservedFilename in reservedFilenames:
-        if newfilename.upper() == reservedFilename:
-            newfilename = newfilename + '_'
 
     # If the filename is blank or invalid, return "BadBodyName"
     if newfilename == '':
