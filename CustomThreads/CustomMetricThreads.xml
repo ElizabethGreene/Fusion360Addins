@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ThreadType>
+  <Name>Custom Metric Threads</Name>
+  <CustomName>Custom Metric Threads</CustomName>
+  <Unit>mm</Unit>
+  <Angle>60</Angle>
+  <SortOrder>3</SortOrder>
+  <ThreadSize>
+    <Size>36.0</Size>
+    <Designation>
+      <ThreadDesignation>M36x0.75</ThreadDesignation>
+      <CTD>M36x0.75</CTD>
+      <Pitch>1.0</Pitch>
+      <Thread>
+        <Gender>internal</Gender>
+        <Class>4H</Class>
+        <MajorDia>36</MajorDia>
+        <PitchDia>35.513</PitchDia>
+        <MinorDia>35.188</MinorDia>
+        <TapDrill>35.0</TapDrill>
+      </Thread>
+      <Thread>
+        <Gender>external</Gender>
+        <Class>4g6g</Class>
+        <MajorDia>36</MajorDia>
+        <PitchDia>35.513</PitchDia>
+        <MinorDia>35.188</MinorDia>
+      </Thread>
+    </Designation>
+  </ThreadSize>
+</ThreadType>
